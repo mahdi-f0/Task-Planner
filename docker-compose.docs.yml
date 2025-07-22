@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: task_planner_local_docs
+    container_name: task_planner_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./task_planner:/app/task_planner:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
